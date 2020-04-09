@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace A3FL_Support_Client.Properties {
+namespace A3FL_Executive_Client.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace A3FL_Support_Client.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("A3FL_Support_Client.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("A3FL_Executive_Client.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -63,9 +63,9 @@ namespace A3FL_Support_Client.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Yt_Ban {
+        internal static System.Drawing.Bitmap Yt_Ban1 {
             get {
-                object obj = ResourceManager.GetObject("Yt_Ban", resourceCulture);
+                object obj = ResourceManager.GetObject("Yt_Ban1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

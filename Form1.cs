@@ -2,25 +2,26 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace A3FL_Support_Client
+namespace A3FL_Executive_Client
 {
     public partial class Form1 : Form
     {
         public Form1()
         {
             InitializeComponent();
+            HideCompStuff();
         }
 
         private void buttonGenerate_Click(object sender, EventArgs e)
         {
             //Gather Inputs
-            string applicantName = inputApplicantName.Text;
+            string playerName = inputPlayerName.Text;
             string supportName = inputSupportName.Text;
             string applicationStatus = "";
             bool inputsValid;
 
             //ERROR - Input Missing: Applicant Name
-            if (applicantName == "")
+            if (playerName == "")
             {
                 labelMessagePreview.Text = "ERROR: You have not entered the Applicant's Name. Try again!";
                 labelMessagePreview.ForeColor = Color.Red;
@@ -59,33 +60,56 @@ namespace A3FL_Support_Client
                 labelMessagePreview.ForeColor = Color.White;
                 switch (applicationStatus)
                 {
-                    case "Accepted":
-                        //App Accepted
-                        labelMessagePreview.Text = "Congratulations [color=#0080ff]" + applicantName + "[/color],\n\n"
-                            + "Thank you for your interest in joining Arma 3 Fisher's Life as a civilian. Your citizenship has been [color=#00ff00]accepted[/color] and you may proceed to the next phase of the citizenship application process. Please visit our community Teamspeak, [color=#ff8000]ts3.arma3fisherslife.net or 54.36.238.11:11690[/color], and join the 'Requesting Support' room where a member of our dedicated support team will assist you in making sure you have all the required information for the server.\n\n"
-                            + "Best of luck!\n"
-                            + "[color=#ff99ff]" + supportName + "\n"
-                            + "Support[/color]";
+                    case "Support Ticket Completed":
+                        labelMessagePreview.Text = "Hello [color=rgb(251, 160, 38)]" + playerName + "[/color],\n\n"
+                            + "Your request has been completed.\n\n"
+                            + "Regards,\n"
+                            + "[color=rgb(100, 0, 150)]" + supportName + "[/color]\n"
+                            + "[color=rgb(147, 101, 184)]Executive Team[/color]";
                         break;
-                    case "ON HOLD - Forum/RP Name Dont Match":
-                        //App On Hold
-                        labelMessagePreview.Text = "Hello [color=#0080ff]" + applicantName + "[/color],\n\n"
-                            + "Your application is [color=#ff8000][i]On Hold[/i][/color] because of the following reasons:\n\n"
-                            + "Name change required, roleplay name must match forums name, please submit a Support Ticket. If you need help or have any questions please join our community Teamspeak, [color=#ff8000]ts3.arma3fisherslife.net or 54.36.238.11:11690[/color].\n\n"
-                            + "Please fix the issue(s) above so we can continue your induction process by editing your original post. Make sure that you have replied only stating that you have fixed these issues. (eg. Fixed!)\n\n"
-                            + "Thanks,\n"
-                            + "[color=#ff99ff]" + supportName + "\n"
-                            + "Support[/color]";
+                    case "Accepted Whitelist":
+                        labelMessagePreview.Text = "Hello [color=rgb(251, 160, 38)]" + playerName + "[/color],\n\n"
+                            + "You are now whitelisted.\n\n"
+                            + "Regards,\n"
+                            + "[color=rgb(100, 0, 150)]" + supportName + "[/color]\n"
+                            + "[color=rgb(147, 101, 184)]Executive Team[/color]";
                         break;
-                    case "ON HOLD - Famous/Fictional Name":
-                        //App On Hold
-                        labelMessagePreview.Text = "Hello [color=#0080ff]" + applicantName + "[/color],\n\n"
-                            + "Your application is [color=#ff8000][i]On Hold[/i][/color] because of the following reasons:\n\n"
-                            + "Name change required due to your name being a famous/fictional character, please submit a Support Ticket. If you need help or have any questions please join our community Teamspeak, [color=#ff8000]ts3.arma3fisherslife.net or 54.36.238.11:11690[/color].\n\n"
-                            + "Please fix the issue(s) above so we can continue your induction process by editing your original post. Make sure that you have replied only stating that you have fixed these issues. (eg. Fixed!)\n\n"
-                            + "Thanks,\n"
-                            + "[color=#ff99ff]" + supportName + "\n"
-                            + "Support[/color]";
+                    case "Player Report":
+                        labelMessagePreview.Text = "Hello [color=rgb(251, 160, 38)]" + playerName + "[/color],\n\n"
+                            + "Thank you for the player report, the executive team will take it from here.\n\n"
+                            + "Regards,\n"
+                            + "[color=rgb(100, 0, 150)]" + supportName + "[/color]\n"
+                            + "[color=rgb(147, 101, 184)]Executive Team[/color]";
+                        break;
+                    case "Accepted Comp Request - Items":
+                        labelMessagePreview.Text = "Hello [color=rgb(251, 160, 38)]" + playerName + "[/color],\n\n"
+                            + "Your compensation request has been [color=rgb(97, 189, 109)][b]approved[/b][/color] for the following items:\n\n"
+                            + "[color=rgb(26, 188, 156)]"
+                            + labelCompensationList.Text
+                            + "[/color]\n\n"
+                            + "Please [color=rgb(226, 80, 65)]contact an executive[/color] in game via /a to receive your compensation. You have [color=rgb(226, 80, 65)]1 week to claim your compensation[/color] before this request is [color=rgb(226, 80, 65)]no longer valid[/color].\n\n"
+                            + "Regards,\n"
+                            + "[color=rgb(100, 0, 150)]" + supportName + "[/color]\n"
+                            + "[color=rgb(147, 101, 184)]Executive Team[/color]";
+                        break;
+                    case "Accepted Comp Request - Vehicle":
+                        labelMessagePreview.Text = "Hello [color=rgb(251, 160, 38)]" + playerName + "[/color],\n\n"
+                            + "Your compensation request has been [color=rgb(97, 189, 109)][b]approved[/b][/color] for the following vehicle(s):\n\n"
+                            + "[color=rgb(26, 188, 156)]"
+                            + labelCompensationList.Text
+                            + "[/color]\n\n"
+                            + "You will find your vehicle(s) [color=rgb(184, 49, 47)][b]in your garage/factory[/b][/color] next time you join the game server.\n\n"
+                            + "Regards,\n"
+                            + "[color=rgb(100, 0, 150)]" + supportName + "[/color]\n"
+                            + "[color=rgb(147, 101, 184)]Executive Team[/color]";
+                        break;
+                    case "Name Change Required":
+                        labelMessagePreview.Text = "Hello [color=rgb(251, 160, 38)]" + playerName + "[/color],\n\n"
+                            + "Your whitelisting is [color=rgb(250, 197, 28)][i]On Hold[/i][/color] for the following reason(s):\n\n"
+                            + "Name change required, you must choose a logical roleplay name [b]OR[/b] you may not use the name of a famous/fictional character. Please submit a Support Ticket. If you have nay questions or need assistance feel free to join our community Teamspeak, [color=rgb(243, 121, 52)]ts3.arma3fisherslife.net or 54.36.238.11:11690[/color] and a support member will assit you.\n\n"
+                            + "Regards,\n"
+                            + "[color=rgb(100, 0, 150)]" + supportName + "[/color]\n"
+                            + "[color=rgb(147, 101, 184)]Executive Team[/color]";
                         break;
                     default:
                         //No item Selected
@@ -104,42 +128,114 @@ namespace A3FL_Support_Client
         private void buttonClear_Click(object sender, EventArgs e)
         {
             //Clear Inputs
-            inputApplicantName.Text = "";
+            inputPlayerName.Text = "";
             inputSupportName.Text = "";
 
             //Clear Response chosen
             inputChooseResponse.SelectedIndex = -1;
 
-            //Clear Output
+            //Clear Outputs
             labelMessagePreview.Text = " ";
+            labelCompensationList.Text = " ";
         }
-
-        private void buttonActivityLogger_Click(object sender, EventArgs e)
+        private void buttonActivityForm_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://docs.google.com/forms/d/1H4ONK-reeO_milqTJ6GRNeO8g17kC0Vxf8RyViX7urI/viewform?edit_requested=true");
+            System.Diagnostics.Process.Start("https://docs.google.com/forms/d/e/1FAIpQLSd4itIU4X-7OVlyM7SQBXpYv4xfW-1WiW9qkQ6KGAXjDF40NA/viewform");
         }
 
         private void buttonActivityStats_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://docs.google.com/spreadsheets/d/17jeQQ2LA4xBbN_4MsLYULF9rv0ltPDfp0QFzazW9s4M/edit#gid=0");
+            System.Diagnostics.Process.Start("https://docs.google.com/spreadsheets/d/1Geq-nWC2NAc6hDUKzMtAQxpSLQHbVmzUISbQh0dcFEA/edit#gid=0");
         }
 
-        private void buttonApplicationProcess_Click(object sender, EventArgs e)
+        private void buttonOperationsManual_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://docs.google.com/document/d/1KvleMrG_Dg-jP6hMHYnn1qH-6QYTqShGTy1EX79kyNQ/edit");
-        }
-        private void buttonCivilianApps_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://forums.arma3fisherslife.net/forums/173/");
-        }
-        private void buttonSupportManual_Click(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start("https://docs.google.com/document/d/1aIKn5mVo5IOcYypfbgQutciar3gs-RBNh_CkUre7lNQ/edit");
+            System.Diagnostics.Process.Start("https://docs.google.com/document/d/1e4ct-7Q2QQBJa5VEkcHeaidGA1UzAute4MzlBHZah4c/view");
         }
 
-        private void buttonSupportRoster_Click(object sender, EventArgs e)
+        private void buttonBattlemetrics_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://docs.google.com/spreadsheets/d/1_iT1-2ALbSDec5ztZdeTiNz8BCmgCuQsfPhtxnRrSDM/edit#gid=3534281");
+            System.Diagnostics.Process.Start("https://www.battlemetrics.com/rcon");
+        }
+
+        private void buttonAdminPanel_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://executive.arma3fisherslife.net/panel.php");
+        }
+
+        private void buttonStaffRecords_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://docs.google.com/spreadsheets/d/1JfB2kZ_tSRCgNoxbgxLuCJTLDSDpwNg4UEbbkNa0Nrc/edit#gid=0");
+        }
+
+        private void buttonDisciplinaryTracker_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://docs.google.com/spreadsheets/d/1af8Y0kS-yXDLd9Fr1TYSiiXjBgwNJZi-sCiejqcY50s/edit#gid=709293636");
+        }
+
+        private void buttonPunishmentSystem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://docs.google.com/document/d/1lSa0e7AJN3gjYiWE0OwwHcqN_4UvE_JwEHe8Zg_iTLc/edit");
+        }
+
+        private void buttonMainDrive_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://drive.google.com/drive/u/0/folders/1eT4NXxYSKr_mZP9obCe8eb8gdj3NmCQs");
+        }
+
+        private void inputChooseResponse_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (inputChooseResponse.SelectedItem.ToString() == "Accepted Comp Request - Items")
+            {
+                ShowCompStuff();
+            }
+            else if (inputChooseResponse.SelectedItem.ToString() == "Accepted Comp Request - Vehicle")
+            {
+                ShowCompStuff();
+            }
+            else
+            {
+                HideCompStuff();
+            }
+        }
+
+        private void HideCompStuff()
+        {
+            staticLabelCompItem.Visible = false;
+            staticLabelCompList.Visible = false;
+            inputCompensationItem.Visible = false;
+            buttonAddCompensationItem.Visible = false;
+            buttonClearCompensationList.Visible = false;
+            labelCompensationList.Visible = false;
+
+            inputCompensationItem.Text = "";
+            labelCompensationList.Text = " ";
+        }
+        private void ShowCompStuff()
+        {
+            staticLabelCompItem.Visible = true;
+            staticLabelCompList.Visible = true;
+            inputCompensationItem.Visible = true;
+            buttonAddCompensationItem.Visible = true;
+            buttonClearCompensationList.Visible = true;
+            labelCompensationList.Visible = true;
+        }
+        private void buttonAddCompensationItem_Click(object sender, EventArgs e)
+        {
+            //Add item to the compensation list
+            if (labelCompensationList.Text == " ")
+            {
+                labelCompensationList.Text = inputCompensationItem.Text;
+            }
+            else
+            {
+                labelCompensationList.Text += "\n" + inputCompensationItem.Text;
+            }
+        }
+
+        private void buttonClearCompensationList_Click(object sender, EventArgs e)
+        {
+            labelCompensationList.Text = " ";
         }
     }
 }

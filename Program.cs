@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace A3FL_Support_Client
+namespace A3FL_Executive_Client
 {
     static class Program
     {
